@@ -14,31 +14,31 @@ namespace msfastbuildvsix
 {
 	public class OptionPageGrid : DialogPage
 	{
-		private string FBArgs = "-dist -ide";
-		private string FBPath = "fbuild.exe";
+		private string FBArgs = "-dist -ide -monitor";
+		private string FBPath = "FBuild.exe";
 		private bool FBUnity = false;
 
-		[Category("msfastbuild")]
+		[Category("Options")]
 		[DisplayName("FASTBuild arguments")]
-		[Description("Arguments that will be passed to FASTBuild, default \"-dist -ide\"")]
+		[Description("Arguments that will be passed to FASTBuild, default \"-dist -ide -monitor\"")]
 		public string OptionFBArgs
 		{
 			get { return FBArgs; }
 			set { FBArgs = value; }
 		}
 
-		[Category("msfastbuild")]
+		[Category("Options")]
 		[DisplayName("FBuild.exe path")]
-		[Description("Can be used to specify the path to FBuild.exe")]
+		[Description("Specify the path to FBuild.exe")]
 		public string OptionFBPath
 		{
 			get { return FBPath; }
 			set { FBPath = value; }
 		}
 
-		[Category("msfastbuild")]
+		[Category("Options")]
 		[DisplayName("Use unity files")]
-		[Description("Whether to attempt to use 'unity' files to speed up compilation. May require modifying some headers.")]
+		[Description("Whether to merge files together to speed up compilation. May require modifying some headers.")]
 		public bool OptionFBUnity
 		{
 			get { return FBUnity; }
@@ -50,8 +50,7 @@ namespace msfastbuildvsix
 	[InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
 	[ProvideMenuResource("Menus.ctmenu", 1)]
 	[Guid(FASTBuildPackage.PackageGuidString)]
-	[ProvideOptionPage(typeof(OptionPageGrid),
-	"msfastbuild", "Options", 0, 0, true)]
+	[ProvideOptionPage(typeof(OptionPageGrid), "FASTBuild", "General", 0, 0, true)]
 	[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
 	public sealed class FASTBuildPackage : Package
 	{
