@@ -288,6 +288,11 @@ namespace msfastbuild
 				+ "%comspec% /c \"\"" + VCBasePath + "Auxiliary\\Build\\vcvarsall.bat\" "
 				+ (Platform == "Win32" ? "x86" : "x64") + " " + WindowsSDKTarget
 				+ " && \"" + CommandLineOptions.FBPath  +"\" %*\"";
+
+		#if NULL_FASTBUILD_OUTPUT
+			BatchFileText += " > nul";
+		#endif
+
 			File.WriteAllText(projectDir + "fb.bat", BatchFileText);
 
 			Console.WriteLine("Building " + Path.GetFileNameWithoutExtension(ProjectPath));
@@ -489,10 +494,12 @@ namespace msfastbuild
 			//CompilerString.AppendFormat("\t\t'$VSBasePath$/VC/redist/{0}/Microsoft.VC{1}.CRT/msvcp{1}.dll'\n", Platform == "Win32" ? "x86" : "x64", PlatformToolsetVersion);
 			//CompilerString.AppendFormat("\t\t'$VSBasePath$/VC/redist/{0}/Microsoft.VC{1}.CRT/vccorlib{1}.dll'\n", Platform == "Win32" ? "x86" : "x64", PlatformToolsetVersion);
 
-			AddExtraDlls(CompilerString, CompilerRoot, "mspft*.dll");
 			AddExtraDlls(CompilerString, CompilerRoot, "msobj*.dll");
 			AddExtraDlls(CompilerString, CompilerRoot, "mspdb*.dll");
+			AddExtraDlls(CompilerString, CompilerRoot, "mspft*.dll");
 			AddExtraDlls(CompilerString, CompilerRoot, "msvcp*.dll");
+			AddExtraDlls(CompilerString, CompilerRoot, "tbbmalloc.dll");
+			AddExtraDlls(CompilerString, CompilerRoot, "vcmeta.dll");
 			AddExtraDlls(CompilerString, CompilerRoot, "vcruntime*.dll");
 
 			CompilerString.Append("\t}\n"); //End extra files
