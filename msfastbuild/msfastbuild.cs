@@ -643,7 +643,7 @@ namespace msfastbuild
 				var LinkDefinitions = ActiveProject.ItemDefinitions["Link"];
 				string OutputFile = LinkDefinitions.GetMetadataValue("OutputFile").Replace('\\', '/');
 
-				if(HasCompileActions)
+				if(HasCompileActions && BuildOutput != BuildType.Application)
 				{
 					string DependencyOutputPath = LinkDefinitions.GetMetadataValue("ImportLibrary");
 					if (Path.IsPathRooted(DependencyOutputPath))
