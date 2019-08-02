@@ -39,10 +39,10 @@
       <Group guid="guidFASTBuildPackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_BUILD" />
       </Group>
-      <Group guid="guidFASTBuildPackageCmdSet" id="ProjContextMenuGroup" priority="0x0000">
+      <Group guid="guidFASTBuildPackageCmdSet" id="ProjContextMenuGroup" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
       </Group>
-      <Group guid="guidFASTBuildPackageCmdSet" id="SlnContextMenuGroup" priority="0x0000">
+      <Group guid="guidFASTBuildPackageCmdSet" id="SlnContextMenuGroup" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_SOLNNODE" />
       </Group>
     </Groups>
@@ -60,17 +60,17 @@
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidFASTBuildPackageCmdSet" id="SlnFASTBuildId" priority="0x0100" type="Button">
         <Parent guid="guidFASTBuildPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic2" />
+        <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>FASTBuild Solution</ButtonText>
         </Strings>
       </Button>
       
-      <Button guid="guidFASTBuildPackageCmdSet" id="FASTBuildId" priority="0x0100" type="Button">
+      <Button guid="guidFASTBuildPackageCmdSet" id="FASTBuildId" priority="0x0200" type="Button">
         <Parent guid="guidFASTBuildPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>FASTBuild Startup Project</ButtonText>
+          <ButtonText>FASTBuild Project</ButtonText>
         </Strings>
       </Button>
 
@@ -84,7 +84,7 @@
 
       <Button guid="guidFASTBuildPackageCmdSet" id="SlnContextMenuFASTBuildId" priority="0x0100" type="Button">
         <Parent guid="guidFASTBuildPackageCmdSet" id="SlnContextMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic2" />
+        <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>FASTBuild Solution</ButtonText>
         </Strings>
@@ -99,7 +99,7 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\FASTBuild.png" usedList="bmpPic1, bmpPic2" />
+      <Bitmap guid="guidImages" href="Resources\FASTBuild.png" usedList="bmpPic1" />
     </Bitmaps>
   </Commands>
 
@@ -120,7 +120,6 @@
 
     <GuidSymbol name="guidImages" value="{8bcbf9f0-c7c3-4a1e-89a0-fe5addf1b971}">
       <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
     </GuidSymbol>
  
   </Symbols>

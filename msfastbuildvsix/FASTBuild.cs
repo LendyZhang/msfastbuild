@@ -217,6 +217,11 @@ namespace msfastbuildvsix
 				fbCommandLine += " -u true";
 			}
 
+			if(fbPackage.OptionFBQuiet)
+			{
+				fbCommandLine += " -q true";
+			}
+
 			string msfastbuildPath = Assembly.GetAssembly(typeof(msfastbuild.msfastbuild)).Location;
 			try
 			{
