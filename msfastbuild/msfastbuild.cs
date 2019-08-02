@@ -54,6 +54,10 @@ namespace msfastbuild
 		HelpText = "Whether to combine files into a unity step. May substantially improve compilation time, but not all projects are suitable.")]
 		public bool UseUnity { get; set; }
 
+		[Option('q', "quiet", DefaultValue = false,
+		HelpText = "Force disabling output of FASTBuild.")]
+		public bool QuietMode { get; set; }
+
 		[HelpOption]
 		public string GetUsage()
 		{
@@ -289,9 +293,10 @@ namespace msfastbuild
 				+ (Platform == "Win32" ? "x86" : "x64") + " " + WindowsSDKTarget
 				+ " && \"" + CommandLineOptions.FBPath  +"\" %*\"";
 
-		#if NULL_FASTBUILD_OUTPUT
-			BatchFileText += " > nul";
-		#endif
+			if (CommandLineOptions.QuietMode)
+			{
+				BatchFileText += " > nul";
+			}
 
 			File.WriteAllText(projectDir + "fb.bat", BatchFileText);
 
@@ -643,7 +648,7 @@ namespace msfastbuild
 				var LinkDefinitions = ActiveProject.ItemDefinitions["Link"];
 				string OutputFile = LinkDefinitions.GetMetadataValue("OutputFile").Replace('\\', '/');
 
-				if(HasCompileActions)
+				if(HasCompileActions && BuildOutput != BuildType.Application)
 				{
 					string DependencyOutputPath = LinkDefinitions.GetMetadataValue("ImportLibrary");
 					if (Path.IsPathRooted(DependencyOutputPath))

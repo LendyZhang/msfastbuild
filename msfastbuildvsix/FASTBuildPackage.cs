@@ -18,6 +18,12 @@ namespace msfastbuildvsix
 		private string FBPath = "FBuild.exe";
 		private bool FBUnity = false;
 
+	#if FASTBUILD_VS2019
+		private bool FBQuiet = true;
+	#else
+		private bool FBQuiet = false;
+	#endif
+
 		[Category("Options")]
 		[DisplayName("FASTBuild arguments")]
 		[Description("Arguments that will be passed to FASTBuild, default \"-dist -ide -monitor\"")]
@@ -43,6 +49,15 @@ namespace msfastbuildvsix
 		{
 			get { return FBUnity; }
 			set { FBUnity = value; }
+		}
+
+		[Category("Options")]
+		[DisplayName("Quiet mode")]
+		[Description("Whether to disable FASTBuild output.")]
+		public bool OptionFBQuiet
+		{
+			get { return FBQuiet; }
+			set { FBQuiet = value; }
 		}
 	}
 
@@ -97,6 +112,15 @@ namespace msfastbuildvsix
 			{
 				OptionPageGrid page = (OptionPageGrid)GetDialogPage(typeof(OptionPageGrid));
 				return page.OptionFBUnity;
+			}
+		}
+
+		public bool OptionFBQuiet
+		{
+			get
+			{
+				OptionPageGrid page = (OptionPageGrid)GetDialogPage(typeof(OptionPageGrid));
+				return page.OptionFBQuiet;
 			}
 		}
 
