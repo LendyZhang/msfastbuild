@@ -107,7 +107,7 @@ namespace msfastbuildvsix
 		{
 			string fbuild = "fbuild.exe";
 
-			if (FBuildExePath != fbuild)
+			if (FBuildExePath.ToLower() != fbuild)
 			{
 				return File.Exists(FBuildExePath);
 			}
